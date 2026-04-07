@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+/**
+ * Servicio para operaciones CRUD sobre `Tienda`.
+ */
 public class TiendaService {
     
     @Autowired

@@ -9,6 +9,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/productos")
+/**
+ * Controlador para gestión y consulta de `Producto`.
+ */
 public class ProductoController {
     
     @Autowired

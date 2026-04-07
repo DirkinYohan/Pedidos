@@ -2,6 +2,11 @@ package com.apipedidos.DTO;
 
 import java.util.List;
 
+/**
+ * DTO usado por el endpoint de creación de pedidos.
+ * Contiene la referencia al cliente, la tienda, las líneas (`detalles`)
+ * y datos de entrega/opciones.
+ */
 public class CrearPedidoRequest {
     private Long clienteId;
     private Long tiendaId;

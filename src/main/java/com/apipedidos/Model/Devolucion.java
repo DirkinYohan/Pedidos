@@ -13,6 +13,10 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "devolucion")
+/**
+ * Representa una solicitud de devolución asociada a un `Pedido`.
+ * Contiene el motivo, monto a reembolsar y estado de la devolución.
+ */
 public class Devolucion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

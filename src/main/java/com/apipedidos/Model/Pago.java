@@ -5,6 +5,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "pago")
+/**
+ * Registro de pago asociado a un `Pedido`.
+ * Contiene el monto, el método y la fecha en que se realizó el pago.
+ */
 public class Pago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

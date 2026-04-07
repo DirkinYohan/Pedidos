@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+/**
+ * Servicio para consultar devoluciones y listados.
+ */
 public class DevolucionService {
     
     @Autowired

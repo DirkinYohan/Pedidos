@@ -4,6 +4,10 @@ package com.apipedidos.Model;
 import jakarta.persistence.Entity;
 
 @Entity
+/**
+ * Representa a un repartidor (mensajero) que entrega pedidos.
+ * Extiende `Usuario` y añade datos del vehículo y disponibilidad.
+ */
 public class Repartidor extends Usuario {
     private String vehiculo;
     private String licencia;

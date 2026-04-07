@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+/**
+ * Servicio para operaciones CRUD sobre `Cliente`.
+ */
 public class ClienteService {
     
     @Autowired

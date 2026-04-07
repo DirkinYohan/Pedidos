@@ -7,6 +7,10 @@ import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+/**
+ * Clase base para todos los tipos de usuarios del sistema (Cliente, Repartidor, etc.).
+ * Contiene datos de autenticación y la relación con pedidos (si aplica).
+ */
 public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

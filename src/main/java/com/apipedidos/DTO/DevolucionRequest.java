@@ -1,5 +1,9 @@
 package com.apipedidos.DTO;
 
+/**
+ * DTO para solicitar una devolución sobre un `Pedido`.
+ * Contiene el motivo y el monto a reembolsar.
+ */
 public class DevolucionRequest {
     private String motivo;
     private Double montoReembolso;

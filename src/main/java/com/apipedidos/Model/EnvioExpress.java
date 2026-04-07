@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("EXPRESS")
+/**
+ * Envío express con recargo por urgencia y opción de entrega 24 horas.
+ */
 public class EnvioExpress extends Envio {
     private Boolean entrega24Horas;
     private Double recargoUrgencia;

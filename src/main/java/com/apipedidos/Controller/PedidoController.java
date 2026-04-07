@@ -11,6 +11,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pedidos")
+/**
+ * Controlador que expone endpoints para crear y gestionar `Pedido`.
+ *
+ * Endpoints principales:
+ * - `POST /crear` crear un pedido (usa `CrearPedidoRequest`).
+ * - `PUT /{id}/estado` actualizar estado del pedido.
+ * - `POST /{id}/pago` registrar pago (usa `PagoRequest`).
+ * - `POST /{id}/devolucion` solicitar devolución (usa `DevolucionRequest`).
+ */
 public class PedidoController {
     
     @Autowired
@@ -35,6 +44,12 @@ public class PedidoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    /**
+     * Endpoint para crear un pedido.
+     * - Valida y crea el pedido usando `PedidoService.crearPedido`.
+     * - Devuelve el pedido creado o un error en caso de validación.
+     * @param request DTO con datos del pedido
+     */
     
     @PutMapping("/{id}/estado")
     public ResponseEntity<?> actualizarEstado(@PathVariable Long id, @RequestParam EstadoPedido estado) {
@@ -45,6 +60,9 @@ public class PedidoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    /**
+     * Actualiza el estado de un pedido. Parámetro `estado` debe ser uno de `EstadoPedido`.
+     */
     
     @PostMapping("/{id}/pago")
     public ResponseEntity<?> registrarPago(@PathVariable Long id, @RequestBody PagoRequest request) {
@@ -55,6 +73,10 @@ public class PedidoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    /**
+     * Registra un pago para el pedido.
+     * @param request DTO `PagoRequest` con `metodoPago` y `monto`.
+     */
     
     @PostMapping("/{id}/devolucion")
     public ResponseEntity<?> solicitarDevolucion(@PathVariable Long id, @RequestBody DevolucionRequest request) {
@@ -65,6 +87,10 @@ public class PedidoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    /**
+     * Solicita una devolución para un pedido entregado.
+     * @param request DTO `DevolucionRequest` con motivo y monto.
+     */
     
     @PutMapping("/{id}/asignar-repartidor")
     public ResponseEntity<?> asignarRepartidor(@PathVariable Long id, @RequestParam Long repartidorId) {
@@ -75,16 +101,25 @@ public class PedidoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    /**
+     * Asigna un repartidor al pedido indicado.
+     */
     
     @GetMapping("/cliente/{clienteId}")
     public ResponseEntity<List<Pedido>> listarPorCliente(@PathVariable Long clienteId) {
         return ResponseEntity.ok(pedidoService.listarPedidosPorCliente(clienteId));
     }
+    /**
+     * Lista pedidos por cliente.
+     */
     
     @GetMapping("/estado/{estado}")
     public ResponseEntity<List<Pedido>> listarPorEstado(@PathVariable EstadoPedido estado) {
         return ResponseEntity.ok(pedidoService.listarPedidosPorEstado(estado));
     }
+    /**
+     * Lista pedidos filtrando por estado.
+     */
     
     @GetMapping("/{id}")
     public ResponseEntity<?> obtenerPedido(@PathVariable Long id) {
@@ -95,6 +130,9 @@ public class PedidoController {
             return ResponseEntity.notFound().build();
         }
     }
+    /**
+     * Obtiene un pedido por id. Devuelve 404 si no existe.
+     */
     
     @GetMapping
     public ResponseEntity<List<Pedido>> listarTodos() {

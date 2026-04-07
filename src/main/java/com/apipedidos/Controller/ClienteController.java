@@ -10,6 +10,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/clientes")
+/**
+ * Controlador REST para operaciones sobre `Cliente`.
+ * Exponer endpoints para crear, actualizar, listar y eliminar clientes.
+ */
 public class ClienteController {
     
     @Autowired

@@ -2,11 +2,15 @@ package com.apipedidos.Model;
 
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_envio")
+/**
+ * Clase base para distintos tipos de envíos (estándar, express, dron, internacional).
+ *
+ * Implementaciones concretas deben sobrescribir `calcularCosto()`.
+ */
 public abstract class Envio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

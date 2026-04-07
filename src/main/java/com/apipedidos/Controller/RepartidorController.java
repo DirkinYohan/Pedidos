@@ -9,6 +9,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/repartidores")
+/**
+ * Controlador para gestionar `Repartidor` (registro y disponibilidad).
+ */
 public class RepartidorController {
     
     @Autowired

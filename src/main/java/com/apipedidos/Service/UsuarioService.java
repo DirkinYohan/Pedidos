@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+/**
+ * Servicio general para operaciones sobre `Usuario`.
+ */
 public class UsuarioService {
     
     @Autowired

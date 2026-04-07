@@ -1,0 +1,451 @@
+{
+  "info": {
+    "name": "API Pedidos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Colección generada desde los controladores de ApiPedidos"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "clienteId",
+      "value": "1"
+    },
+    {
+      "key": "tiendaId",
+      "value": "1"
+    },
+    {
+      "key": "productoId",
+      "value": "1"
+    },
+    {
+      "key": "pedidoId",
+      "value": "1"
+    },
+    {
+      "key": "repartidorId",
+      "value": "1"
+    },
+    {
+      "key": "envioId",
+      "value": "1"
+    },
+    {
+      "key": "pagoId",
+      "value": "1"
+    },
+    {
+      "key": "transaccionId",
+      "value": "1"
+    }
+  ],
+  "item": [
+    {
+      "name": "Clientes",
+      "item": [
+        {
+          "name": "Crear cliente",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Nicolas\",\n  \"email\": \"nicolas@mail.com\",\n  \"telefono\": \"3001234567\",\n  \"password\": \"123456\",\n  \"direccion\": \"Calle 10 # 20-30\",\n  \"fechaRegistro\": \"2026-03-26\",\n  \"creditoDisponible\": 50000\n}"
+            },
+            "url": "{{baseUrl}}/api/clientes"
+          }
+        },
+        {
+          "name": "Actualizar cliente",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Nicolas Actualizado\",\n  \"telefono\": \"3009998888\",\n  \"direccion\": \"Cra 50 # 12-99\"\n}"
+            },
+            "url": "{{baseUrl}}/api/clientes/{{clienteId}}"
+          }
+        },
+        {
+          "name": "Listar clientes",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/clientes"
+          }
+        },
+        {
+          "name": "Obtener cliente por id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/clientes/{{clienteId}}"
+          }
+        },
+        {
+          "name": "Eliminar cliente",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/clientes/{{clienteId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tiendas",
+      "item": [
+        {
+          "name": "Crear tienda",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Super Tienda\",\n  \"direccion\": \"Av Siempre Viva 123\",\n  \"telefono\": \"6014445566\",\n  \"email\": \"tienda@mail.com\"\n}"
+            },
+            "url": "{{baseUrl}}/api/tiendas"
+          }
+        },
+        {
+          "name": "Actualizar tienda",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Super Tienda Centro\",\n  \"direccion\": \"Av Principal 999\",\n  \"telefono\": \"6017778888\",\n  \"email\": \"tienda-centro@mail.com\"\n}"
+            },
+            "url": "{{baseUrl}}/api/tiendas/{{tiendaId}}"
+          }
+        },
+        {
+          "name": "Listar tiendas",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/tiendas"
+          }
+        },
+        {
+          "name": "Obtener tienda por id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/tiendas/{{tiendaId}}"
+          }
+        },
+        {
+          "name": "Eliminar tienda",
+          "request": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/api/tiendas/{{tiendaId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Productos",
+      "item": [
+        {
+          "name": "Crear producto en tienda",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Arroz 1kg\",\n  \"descripcion\": \"Arroz premium\",\n  \"precio\": 4500,\n  \"stock\": 100,\n  \"categoria\": \"Granos\"\n}"
+            },
+            "url": "{{baseUrl}}/api/productos/tienda/{{tiendaId}}"
+          }
+        },
+        {
+          "name": "Actualizar stock",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/productos/{{productoId}}/stock?stock=80"
+          }
+        },
+        {
+          "name": "Listar por categoría",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/productos/categoria/Granos"
+          }
+        },
+        {
+          "name": "Listar por tienda",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/productos/tienda/{{tiendaId}}"
+          }
+        },
+        {
+          "name": "Listar bajo stock",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/productos/bajo-stock?limite=10"
+          }
+        },
+        {
+          "name": "Obtener producto por id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/productos/{{productoId}}"
+          }
+        },
+        {
+          "name": "Listar productos",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/productos"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Repartidores",
+      "item": [
+        {
+          "name": "Crear repartidor",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Carlos Rider\",\n  \"email\": \"rider@mail.com\",\n  \"telefono\": \"3110001111\",\n  \"password\": \"abc123\",\n  \"vehiculo\": \"Moto\",\n  \"licencia\": \"A2-XYZ\",\n  \"calificacion\": 5.0,\n  \"disponible\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/repartidores"
+          }
+        },
+        {
+          "name": "Listar disponibles",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/repartidores/disponibles"
+          }
+        },
+        {
+          "name": "Actualizar disponibilidad",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/repartidores/{{repartidorId}}/disponibilidad?disponible=false"
+          }
+        },
+        {
+          "name": "Listar todos",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/repartidores"
+          }
+        },
+        {
+          "name": "Obtener repartidor por id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/repartidores/{{repartidorId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pedidos",
+      "item": [
+        {
+          "name": "Crear pedido",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clienteId\": 1,\n  \"tiendaId\": 1,\n  \"detalles\": [\n    {\n      \"productoId\": 1,\n      \"cantidad\": 2\n    },\n    {\n      \"productoId\": 2,\n      \"cantidad\": 1\n    }\n  ],\n  \"direccionEntrega\": \"Calle 100 # 10-20\",\n  \"emailConfirmacion\": \"cliente@mail.com\",\n  \"tipoEnvio\": \"EXPRESS\"\n}"
+            },
+            "url": "{{baseUrl}}/api/pedidos/crear"
+          }
+        },
+        {
+          "name": "Actualizar estado",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/pedidos/{{pedidoId}}/estado?estado=PAGADO"
+          }
+        },
+        {
+          "name": "Registrar pago",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"metodoPago\": \"TARJETA\",\n  \"monto\": 25000\n}"
+            },
+            "url": "{{baseUrl}}/api/pedidos/{{pedidoId}}/pago"
+          }
+        },
+        {
+          "name": "Solicitar devolución",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"motivo\": \"Producto defectuoso\",\n  \"montoReembolso\": 25000\n}"
+            },
+            "url": "{{baseUrl}}/api/pedidos/{{pedidoId}}/devolucion"
+          }
+        },
+        {
+          "name": "Asignar repartidor",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/pedidos/{{pedidoId}}/asignar-repartidor?repartidorId={{repartidorId}}"
+          }
+        },
+        {
+          "name": "Listar por cliente",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/pedidos/cliente/{{clienteId}}"
+          }
+        },
+        {
+          "name": "Listar por estado",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/pedidos/estado/CREADO"
+          }
+        },
+        {
+          "name": "Obtener pedido por id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/pedidos/{{pedidoId}}"
+          }
+        },
+        {
+          "name": "Listar pedidos",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/pedidos"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Envíos",
+      "item": [
+        {
+          "name": "Actualizar tracking",
+          "request": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/api/envios/{{envioId}}/tracking?trackingNumber=TRK-123456"
+          }
+        },
+        {
+          "name": "Calcular costo envío",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/envios/calcular-costo?tipoEnvio=DRON"
+          }
+        },
+        {
+          "name": "Obtener envío por pedido",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/envios/pedido/{{pedidoId}}"
+          }
+        },
+        {
+          "name": "Obtener envío por tracking",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/envios/tracking/TRK-123456"
+          }
+        },
+        {
+          "name": "Listar envíos",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/envios"
+          }
+        },
+        {
+          "name": "Obtener envío por id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/envios/{{envioId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pagos",
+      "item": [
+        {
+          "name": "Obtener pago por pedido",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/pagos/pedido/{{pedidoId}}"
+          }
+        },
+        {
+          "name": "Listar pagos",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/pagos"
+          }
+        },
+        {
+          "name": "Obtener pago por id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/pagos/{{pagoId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transacciones",
+      "item": [
+        {
+          "name": "Obtener transacción por pedido",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/transacciones/pedido/{{pedidoId}}"
+          }
+        },
+        {
+          "name": "Listar transacciones",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/transacciones"
+          }
+        },
+        {
+          "name": "Obtener transacción por id",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/transacciones/{{transaccionId}}"
+          }
+        }
+      ]
+    }
+  ]
+}

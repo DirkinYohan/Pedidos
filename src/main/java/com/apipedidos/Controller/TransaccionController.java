@@ -9,6 +9,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/transacciones")
+/**
+ * Controlador para exponer consultas sobre `Transaccion`.
+ */
 public class TransaccionController {
     
     @Autowired

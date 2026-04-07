@@ -7,6 +7,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "pedido")
+/**
+ * Entidad que representa un pedido realizado por un cliente.
+ *
+ * Contiene metadata del pedido (fecha, estado), totales y la relación
+ * con los `DetallePedido` que son las líneas del pedido.
+ */
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +27,8 @@ public class Pedido {
     
     private String direccionEntrega;
     private String emailConfirmacion;
+    private Double ivaTotal;
+    private Double totalSinIva;
     
     @ManyToOne
     @JoinColumn(name = "cliente_id")
@@ -60,6 +68,8 @@ public class Pedido {
         this.estado = EstadoPedido.CREADO;
         this.subtotal = 0.0;
         this.total = 0.0;
+        this.ivaTotal = 0.0;
+        this.totalSinIva = 0.0;
     }
     
     public Long getId() { return id; }
@@ -73,6 +83,12 @@ public class Pedido {
     
     public Double getTotal() { return total; }
     public void setTotal(Double total) { this.total = total; }
+    
+    public Double getIvaTotal() { return ivaTotal; }
+    public void setIvaTotal(Double ivaTotal) { this.ivaTotal = ivaTotal; }
+    
+    public Double getTotalSinIva() { return totalSinIva; }
+    public void setTotalSinIva(Double totalSinIva) { this.totalSinIva = totalSinIva; }
     
     public EstadoPedido getEstado() { return estado; }
     public void setEstado(EstadoPedido estado) { this.estado = estado; }

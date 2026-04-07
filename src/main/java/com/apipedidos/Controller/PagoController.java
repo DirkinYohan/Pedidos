@@ -10,6 +10,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/pagos")
+/**
+ * Controlador para exponer endpoints de consulta sobre pagos.
+ */
 public class PagoController {
     
     @Autowired

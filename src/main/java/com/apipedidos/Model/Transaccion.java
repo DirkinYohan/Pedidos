@@ -5,6 +5,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "transaccion")
+/**
+ * Registra eventos financieros o de sistema relacionados con un `Pedido`.
+ * Ejemplos: pagos, reembolsos, conciliaciones.
+ */
 public class Transaccion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,6 +10,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/envios")
+/**
+ * Controlador para operaciones relacionadas con envíos (tracking y cálculo de costo).
+ */
 public class EnvioController {
     
     @Autowired

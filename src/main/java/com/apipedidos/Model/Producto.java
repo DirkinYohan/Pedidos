@@ -3,6 +3,14 @@ package com.apipedidos.Model;
 import jakarta.persistence.*;
 
 @Entity
+/**
+ * Representa un producto vendible en la tienda.
+ *
+ * Campos importantes:
+ * - `precio`: precio con IVA incluido (si es el caso).
+ * - `iva`: porcentaje de IVA aplicado (ej. 19.0 para 19%).
+ * - `precioSinIva`: opcional, precio base sin IVA si ya está precalculado.
+ */
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +21,10 @@ public class Producto {
     private Double precio;
     private Integer stock;
     private String categoria;
+    private Double iva;
+    private Double precioSinIva;
+
+    
     
     @ManyToOne
     @JoinColumn(name = "tienda_id")
@@ -20,12 +32,14 @@ public class Producto {
     
     public Producto() {}
     
-    public Producto(String nombre, String descripcion, Double precio, Integer stock, String categoria) {
+    public Producto(String nombre, String descripcion, Double precio, Integer stock, String categoria, Double iva, Double precioSinIva) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.stock = stock;
         this.categoria = categoria;
+        this.iva = iva;
+        this.precioSinIva = precioSinIva;
     }
     
     public Long getId() { return id; }
@@ -48,6 +62,12 @@ public class Producto {
     
     public Tienda getTienda() { return tienda; }
     public void setTienda(Tienda tienda) { this.tienda = tienda; }
+    
+    public Double getIva() { return iva; }
+    public void setIva(Double iva) { this.iva = iva; }
+
+    public Double getPrecioSinIva() { return precioSinIva; }
+    public void setPrecioSinIva(Double precioSinIva) { this.precioSinIva = precioSinIva; }
 }
 
 

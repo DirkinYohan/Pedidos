@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+/**
+ * Servicio para operaciones relacionadas con envíos (tracking y cálculo de costo).
+ */
 public class EnvioService {
     
     @Autowired

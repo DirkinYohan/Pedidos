@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+/**
+ * Representa una tienda/establecimiento donde se alojan productos y pedidos.
+ */
 public class Tienda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

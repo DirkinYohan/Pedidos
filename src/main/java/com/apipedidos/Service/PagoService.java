@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+/**
+ * Servicio para consultar y listar pagos.
+ */
 public class PagoService {
     
     @Autowired

@@ -1,5 +1,9 @@
 package com.apipedidos.DTO;
 
+/**
+ * DTO usado al registrar un pago sobre un `Pedido`.
+ * Contiene el `metodoPago` y el `monto` pagado.
+ */
 public class PagoRequest {
     private String metodoPago;
     private Double monto;

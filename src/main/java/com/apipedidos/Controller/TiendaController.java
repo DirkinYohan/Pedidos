@@ -9,6 +9,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tiendas")
+/**
+ * Controlador para CRUD de `Tienda`.
+ */
 public class TiendaController {
     
     @Autowired

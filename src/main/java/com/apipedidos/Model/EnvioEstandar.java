@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("ESTANDAR")
+/**
+ * Envío estándar sin recargos.
+ */
 public class EnvioEstandar extends Envio {
     private Boolean requiereFirma;
     

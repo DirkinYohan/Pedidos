@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+/**
+ * Servicio para CRUD y gestión de disponibilidad de `Repartidor`.
+ */
 public class RepartidorService {
     
     @Autowired

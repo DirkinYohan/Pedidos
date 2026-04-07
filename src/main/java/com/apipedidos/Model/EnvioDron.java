@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("DRON")
+/**
+ * Envío por dron con tarifa fija reducida.
+ */
 public class EnvioDron extends Envio {
     private Double pesoMaximo;
     private Boolean requiereLicencia;

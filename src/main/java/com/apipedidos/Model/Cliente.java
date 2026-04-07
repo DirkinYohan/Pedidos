@@ -5,6 +5,11 @@ import java.time.LocalDate;
 import jakarta.persistence.Entity;
 
 @Entity
+/**
+ * Representa un cliente registrado que puede realizar pedidos.
+ * Extiende `Usuario` con información adicional como dirección,
+ * fecha de registro y crédito disponible.
+ */
 public class Cliente extends Usuario {
     private String direccion;
     private LocalDate fechaRegistro;

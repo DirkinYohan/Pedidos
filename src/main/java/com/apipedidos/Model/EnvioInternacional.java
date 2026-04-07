@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("INTERNACIONAL")
+/**
+ * Envío internacional con costo por aduana y tiempos aumentados.
+ */
 public class EnvioInternacional extends Envio {
     private String paisDestino;
     private Double impuestoAduana;
