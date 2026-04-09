@@ -4,6 +4,7 @@ package com.apipedidos.Model;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -19,9 +20,11 @@ public abstract class Usuario {
     private String nombre;
     private String email;
     private String telefono;
+    @JsonIgnore
     private String password;
     
     @OneToMany(mappedBy = "cliente")
+    @JsonIgnore
     private List<Pedido> pedidos = new ArrayList<>();
     
     public Usuario() {}

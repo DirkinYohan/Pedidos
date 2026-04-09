@@ -1,5 +1,6 @@
 package com.apipedidos.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -17,10 +18,12 @@ public class Pago {
     private Double monto;
     private String metodoPago;
     private LocalDateTime fechaPago;
-    private String estado;
+    @Enumerated(EnumType.STRING)
+    private EstadoPago estado;
     
     @OneToOne
     @JoinColumn(name = "pedido_id")
+    @JsonIgnoreProperties({"cliente", "tienda", "repartidor", "pago", "devolucion", "transaccion", "envio", "detalles"})
     private Pedido pedido;
     
     public Pago() {}
@@ -30,7 +33,7 @@ public class Pago {
         this.metodoPago = metodoPago;
         this.pedido = pedido;
         this.fechaPago = LocalDateTime.now();
-        this.estado = "COMPLETADO";
+        this.estado = EstadoPago.PENDIENTE;
     }
     
     public Long getId() { return id; }
@@ -45,8 +48,8 @@ public class Pago {
     public LocalDateTime getFechaPago() { return fechaPago; }
     public void setFechaPago(LocalDateTime fechaPago) { this.fechaPago = fechaPago; }
     
-    public String getEstado() { return estado; }
-    public void setEstado(String estado) { this.estado = estado; }
+    public EstadoPago getEstado() { return estado; }
+    public void setEstado(EstadoPago estado) { this.estado = estado; }
     
     public Pedido getPedido() { return pedido; }
     public void setPedido(Pedido pedido) { this.pedido = pedido; }

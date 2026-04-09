@@ -32,12 +32,12 @@ public class PedidoService {
     
     @Autowired
     private PagoRepository pagoRepository;
+
+    @Autowired
+    private TransaccionRepository transaccionRepository;
     
     @Autowired
     private DevolucionRepository devolucionRepository;
-    
-    @Autowired
-    private TransaccionRepository transaccionRepository;
     
     @Autowired
     private EnvioRepository envioRepository;
@@ -192,17 +192,20 @@ public class PedidoService {
         }
         
         Pago pago = new Pago(monto, metodoPago, pedido);
+        pago.setEstado(EstadoPago.COMPLETADO);
         pago = pagoRepository.save(pago);
-        
+
         pedido.setPago(pago);
         pedido.setEstado(EstadoPedido.PAGADO);
-        
-        Transaccion transaccion = new Transaccion("PAGO", monto, "PAY-" + System.currentTimeMillis(), pedido);
-        transaccionRepository.save(transaccion);
-        pedido.setTransaccion(transaccion);
-        
+
+        if (pedido.getTransaccion() == null) {
+            Transaccion transaccion = new Transaccion("PAGO", monto, "PAY-" + System.currentTimeMillis(), pedido);
+            transaccionRepository.save(transaccion);
+            pedido.setTransaccion(transaccion);
+        }
+
         pedidoRepository.save(pedido);
-        
+
         return pago;
     }
     /**

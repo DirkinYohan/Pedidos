@@ -49,5 +49,15 @@ Próximos pasos sugeridos
 - Documentar controladores y DTOs (ya hay documentación en los modelos y servicios).
 - Añadir tests unitarios para la lógica de IVA.
 
+Flujo de pagos y estados
+- Los pagos se crean inicialmente en estado `PENDIENTE` al llamar `POST /api/pedidos/{id}/pago`.
+- La pasarela de pagos debe confirmar el resultado mediante el endpoint:
+  `POST /api/pagos/{pagoId}/estado?estado=COMPLETADO` (u otro estado: `RECHAZADO`, `CANCELADO`, `AUTORIZADO`).
+- Al confirmar `COMPLETADO` la API creará una `Transaccion` y marcará el `Pedido` como `PAGADO`.
+
+Colección Postman
+- Se añadió la request `Actualizar estado pago (confirmación)` en `docs/ApiPedidos.postman_collection.json`.
+
+
 Contacto
 - Para más cambios, deja una nota en el repositorio o pídeme que genere pruebas y/o muevas la configuración del IVA a `application.properties`.

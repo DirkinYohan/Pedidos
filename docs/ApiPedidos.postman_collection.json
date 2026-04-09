@@ -11,35 +11,39 @@
     },
     {
       "key": "clienteId",
-      "value": "1"
+      "value": "7"
     },
     {
       "key": "tiendaId",
-      "value": "1"
+      "value": "2"
     },
     {
       "key": "productoId",
-      "value": "1"
+      "value": "4"
+    },
+    {
+      "key": "productoId2",
+      "value": "5"
     },
     {
       "key": "pedidoId",
-      "value": "1"
+      "value": "7"
     },
     {
       "key": "repartidorId",
-      "value": "1"
+      "value": "7"
     },
     {
       "key": "envioId",
-      "value": "1"
+      "value": "7"
     },
     {
       "key": "pagoId",
-      "value": "1"
+      "value": "7"
     },
     {
       "key": "transaccionId",
-      "value": "1"
+      "value": "7"
     }
   ],
   "item": [
@@ -271,7 +275,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"clienteId\": 1,\n  \"tiendaId\": 1,\n  \"detalles\": [\n    {\n      \"productoId\": 1,\n      \"cantidad\": 2\n    },\n    {\n      \"productoId\": 2,\n      \"cantidad\": 1\n    }\n  ],\n  \"direccionEntrega\": \"Calle 100 # 10-20\",\n  \"emailConfirmacion\": \"cliente@mail.com\",\n  \"tipoEnvio\": \"EXPRESS\"\n}"
+              "raw": "{\n  \"clienteId\": {{clienteId}},\n  \"tiendaId\": 2,\n  \"detalles\": [\n    {\n      \"productoId\": 4,\n      \"cantidad\": 2\n    },\n    {\n      \"productoId\": 5,\n      \"cantidad\": 1\n    }\n  ],\n  \"direccionEntrega\": \"Calle 100 # 10-20\",\n  \"emailConfirmacion\": \"cliente@mail.com\",\n  \"tipoEnvio\": \"EXPRESS\"\n}"
             },
             "url": "{{baseUrl}}/api/pedidos/crear"
           }
@@ -417,6 +421,68 @@
           "request": {
             "method": "GET",
             "url": "{{baseUrl}}/api/pagos/{{pagoId}}"
+          }
+        }
+        ,
+        {
+          "name": "Admin: actualizar estado pago (manual)",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/pagos/{{pagoId}}/estado?estado=COMPLETADO"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Flujo Pago Claro (IDs=7)",
+      "item": [
+        {
+          "name": "1) Crear pedido (tienda 2, productos 4 y 5)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clienteId\": {{clienteId}},\n  \"tiendaId\": 2,\n  \"detalles\": [\n    {\n      \"productoId\": 4,\n      \"cantidad\": 2\n    },\n    {\n      \"productoId\": 5,\n      \"cantidad\": 1\n    }\n  ],\n  \"direccionEntrega\": \"Calle 7 # 7-07\",\n  \"emailConfirmacion\": \"cliente7@mail.com\",\n  \"tipoEnvio\": \"EXPRESS\"\n}"
+            },
+            "url": "{{baseUrl}}/api/pedidos/crear"
+          }
+        },
+        {
+          "name": "2) Registrar pago (cambia pedido a PAGADO)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"metodoPago\": \"TARJETA\",\n  \"monto\": 25000\n}"
+            },
+            "url": "{{baseUrl}}/api/pedidos/{{pedidoId}}/pago"
+          }
+        },
+        {
+          "name": "3) Verificar pedido en estado PAGADO",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/pedidos/{{pedidoId}}"
+          }
+        },
+        {
+          "name": "4) Consultar pago por pedido",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/pagos/pedido/{{pedidoId}}"
+          }
+        },
+        {
+          "name": "5) Consultar transacción por pedido",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/transacciones/pedido/{{pedidoId}}"
           }
         }
       ]
